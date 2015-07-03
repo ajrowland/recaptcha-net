@@ -42,7 +42,18 @@ namespace Recaptcha.Web
         /// <param name="tabIndex">Sets the tab index of the recaptcha HTML.</param> 
         public RecaptchaHtmlHelper(string publicKey, RecaptchaTheme theme, string language, int tabIndex)
         {
-            RecaptchaHtmlHelper(string publicKey, RecaptchaTheme theme, string language, int tabIndex, HttpContext.Current.Request.IsSecureConnection)
+			this.PublicKey = RecaptchaKeyHelper.ParseKey(publicKey);
+
+			if (String.IsNullOrEmpty(this.PublicKey))
+			{
+				throw new InvalidOperationException("Public key cannot be null or empty.");
+			}
+
+			this.Theme = theme;
+			this.Language = language;
+			this.TabIndex = tabIndex;
+
+			this.UseSsl = HttpContext.Current.Request.IsSecureConnection;
         }
 
         /// <summary>
