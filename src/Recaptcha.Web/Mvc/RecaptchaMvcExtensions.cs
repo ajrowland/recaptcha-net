@@ -39,7 +39,7 @@ namespace Recaptcha.Web.Mvc
             int tabIndex = 0,
             bool useSsl = false)
         {            
-            RecaptchaHtmlHelper rHtmlHelper = new RecaptchaHtmlHelper(publicKey, theme, language, tabIndex);
+            RecaptchaHtmlHelper rHtmlHelper = new RecaptchaHtmlHelper(publicKey, theme, language, tabIndex, useSsl);
 
             HtmlTextWriter writer = new HtmlTextWriter(new StringWriter());
             writer.Write(rHtmlHelper.ToString());
