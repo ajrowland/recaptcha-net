@@ -12,4 +12,6 @@ If you find a bug in the library or you have an idea about a new feature, please
 
 <h3>Nuget package</h3>
 
+<code>
 Install-Package RecaptchaNetSslFix -Version 1.7.0
+</code>
