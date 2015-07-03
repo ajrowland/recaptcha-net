@@ -39,8 +39,21 @@ namespace Recaptcha.Web
         /// <param name="publicKey">Sets the public key of the recaptcha HTML.</param>
         /// <param name="theme">Sets the theme of the recaptcha HTML.</param>
         /// <param name="language">Sets the language of the recaptcha HTML.</param>
-        /// <param name="tabIndex">Sets the tab index of the recaptcha HTML.</param>    
+        /// <param name="tabIndex">Sets the tab index of the recaptcha HTML.</param> 
         public RecaptchaHtmlHelper(string publicKey, RecaptchaTheme theme, string language, int tabIndex)
+        {
+            RecaptchaHtmlHelper(string publicKey, RecaptchaTheme theme, string language, int tabIndex, HttpContext.Current.Request.IsSecureConnection)
+        }
+
+        /// <summary>
+        /// Creates an instance of the <see cref="RecaptchaHtmlHelper"/> class.
+        /// </summary>
+        /// <param name="publicKey">Sets the public key of the recaptcha HTML.</param>
+        /// <param name="theme">Sets the theme of the recaptcha HTML.</param>
+        /// <param name="language">Sets the language of the recaptcha HTML.</param>
+        /// <param name="tabIndex">Sets the tab index of the recaptcha HTML.</param>
+        /// <param name="useSsl">Sets the protocol used to request the JavaScript library.</param> 
+        public RecaptchaHtmlHelper(string publicKey, RecaptchaTheme theme, string language, int tabIndex, bool useSsl)
         {
             this.PublicKey = RecaptchaKeyHelper.ParseKey(publicKey);
 
@@ -52,8 +65,7 @@ namespace Recaptcha.Web
             this.Theme = theme;
             this.Language = language;
             this.TabIndex = tabIndex;
-
-            UseSsl = HttpContext.Current.Request.IsSecureConnection;
+            this.UseSsl = useSsl;
         }
 
         /// <summary>
