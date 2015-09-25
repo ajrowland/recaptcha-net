@@ -134,7 +134,7 @@ namespace Recaptcha.Web
                 webRequest.ContentLength = postDataBuffer.Length;
                 webRequest.Method = "POST";
 
-                IWebProxy proxy = WebRequest.GetSystemWebProxy();
+				IWebProxy proxy = WebRequest.DefaultWebProxy ?? WebRequest.GetSystemWebProxy();
                 proxy.Credentials = CredentialCache.DefaultCredentials;
 
                 webRequest.Proxy = proxy;
